@@ -1,0 +1,44 @@
+<h1>Calculatrice</h1>
+<form [formGroup]="calcFormGroup">
+  <div>
+    <label for="numOne">Entrer un nombre : </label>
+    <input placeholder="15" type="number" formControlName="numOne" />
+  </div>
+  <div>
+    <label for="operator">Sélectionner une opération : </label>
+    <select name="operator" formControlName="operator">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+  </div>
+  <div>
+    <label for="numTwo">Entrer un nombre : </label>
+    <input placeholder="15" type="number" formControlName="numTwo" />
+  </div>
+  <div>
+    <img
+      class="calculate-icon"
+      src="../../assets/images/calculator-icon.svg"
+      title="Calculer"
+      (click)="calculate($event)"
+    />
+  </div>
+</form>
+
+<p id="result" *ngIf="operationRecordArray.length != 0">
+  Le résultat est : {{ resultat }}
+</p>
+
+<h2 *ngIf="operationRecordArray.length != 0">Historique des opérations :</h2>
+<p *ngFor="let currentOperation of operationRecordArray; let i = index">
+  Date : {{ currentOperation.date | date: "dd/MM/yyyy à HH:mm" }}, opération :
+  {{ currentOperation.operation }}, résultat : {{ currentOperation.resultat }}
+  <img
+    class="delete-icon"
+    (click)="deleteSelectedOperationRecord(i)"
+    src="../../assets/images/delete-icon.svg"
+    title="effacer"
+  />
+</p>

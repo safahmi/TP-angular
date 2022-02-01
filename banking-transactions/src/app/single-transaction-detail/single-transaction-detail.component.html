@@ -1,0 +1,10 @@
+<div>
+  <h2>Transaction details :</h2>
+
+  <p>Id : {{ singleTransaction.id }}</p>
+  <p>Amount : {{ singleTransaction.amount }}</p>
+  <p>Balance : {{ singleTransaction.balance }}</p>
+  <p>Label : {{ singleTransaction.label }}</p>
+  <p>Description : {{ singleTransaction.description }}</p>
+  <p>Date : {{ singleTransaction.date | date: "dd MMMM yyyy à HH:mm:ss" }}</p>
+</div>

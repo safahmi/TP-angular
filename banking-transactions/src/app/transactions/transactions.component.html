@@ -1,0 +1,47 @@
+<h2 class="display-4 text-center">Table of transactions</h2>
+
+<button class="btn btn-secondary" (click)="showTransactions()">
+  Display transactions
+</button>
+<table class="table table-bordered">
+  <thead>
+    <th scope="col" (click)="sort('id')">
+      Id
+      <app-sorting-icon [sortingOrder]="sortingObject.id"></app-sorting-icon>
+    </th>
+    <th scope="col" (click)="sort('amount')">
+      Amount
+      <app-sorting-icon
+        [sortingOrder]="sortingObject.amount"
+      ></app-sorting-icon>
+    </th>
+    <th scope="col" (click)="sort('balance')">
+      Balance
+      <app-sorting-icon
+        [sortingOrder]="sortingObject.balance"
+      ></app-sorting-icon>
+    </th>
+    <th scope="col" (click)="sort('label')">
+      Label
+      <app-sorting-icon [sortingOrder]="sortingObject.label"></app-sorting-icon>
+    </th>
+    <th scope="col" (click)="sort('date')">
+      Date
+      <app-sorting-icon [sortingOrder]="sortingObject.date"></app-sorting-icon>
+    </th>
+    <th scope="col">Details</th>
+  </thead>
+
+  <tr *ngFor="let singleTransaction of allTransactions">
+    <th scope="row">{{ singleTransaction.id }}</th>
+    <td>{{ singleTransaction.amount }}</td>
+    <td>{{ singleTransaction.balance }}</td>
+    <td>{{ singleTransaction.label }}</td>
+    <td>{{ singleTransaction.date | date: "dd/MM/yyyy à HH:mm" }}</td>
+    <td>
+      <a routerLink="/details" [queryParams]="{ id: singleTransaction.id }"
+        >See details</a
+      >
+    </td>
+  </tr>
+</table>

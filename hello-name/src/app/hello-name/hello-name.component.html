@@ -1,0 +1,36 @@
+
+<form>
+    <div>
+        <label for="name" >NOM : </label>
+        <input id="name" placeholder ="Dupont" type="text" [formControl]="name">
+    </div>
+
+    <div>
+        <label for="police">Police : </label>
+        <select #police (change)="onPoliceChange($event.target)">
+            <option  *ngFor="let singleFont of availableFonts" 
+                      value="{{ singleFont }}">{{ singleFont }}
+            </option>
+        </select>
+    </div>
+
+    <div>
+    <label for="name" >Taille police : </label>
+    <input placeholder ="12" type="number" min="11" max="100" [formControl]="taillePolice">
+    </div>
+
+    <p class=align>Choisissez l'alignement du texte :</p>
+    <div *ngFor="let align of selectedText">
+    <input  name="align" 
+            type="radio"  
+            value="{{align}}"
+            (change) = "onAlignementChange($event.target)">
+    <label>{{align}}</label>
+    </div>
+
+</form>
+
+<p [ngStyle]="{'font-family': selectedPolice,
+'font-size': taillePolice.value + 'px',
+ 'text-align': selectedTextAlign }">Bonjour {{ name.value | uppercase }}! </p>
+
